@@ -1,5 +1,3 @@
-## EarlyBird: Early-Fusion for Multi-view Tracking in Bird’s Eye View
-
 ### Problem Definition
 
 The paper focuses on solving the problem of Multi-Target Multi-Camera (MTMC) tracking using multiple synchronized and calibrated cameras. The main challenges include:
