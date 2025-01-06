@@ -27,28 +27,28 @@ The goal is to develop an MVD model and dataset that can handle these generaliza
 The authors propose a new dataset, **Generalized Multi-View Detection (GMVD)**, and a novel barebones model for MVD that emphasizes generalization.
   
 ### 1. GMVD Dataset
-- **Design**:
+- **Design**
   - Generated using synthetic environments (Unity and GTAV) to ensure diversity in lighting, weather, and camera setups.
   - Covers 7 distinct scenes (6+1) with both indoor (e.g., subway) and outdoor environments.
   - Includes variations in the number of cameras, their positions, lighting, and weather conditions (sunny, rainy, night, etc.).
 
-- **Train-Test Split**:
+- **Train-Test Split**
   - Ensures no overlap between training and testing to prevent overfitting.
   - Designed to evaluate generalization across varying conditions.
   
 ### 2. Proposed Model
-- **Feature Extraction and Projection**:
+- **Feature Extraction and Projection**
   - Uses ResNet-18 as a backbone to extract features from multiple camera views.
   - Projects features onto the ground plane (Bird’s Eye View, BEV) using a perspective transformation.
 
-- **Spatial Aggregation**:
+- **Spatial Aggregation**
   - Employs average pooling for feature aggregation across cameras.
   - Ensures permutation invariance (camera order does not matter).
   - Allows the model to handle varying numbers of cameras during inference.
 
-- **Regularization (DropView)**:
+- **Regularization (DropView)**
   - Randomly drops one camera view during training to simulate real-world scenarios where cameras may malfunction.
   - Prevents the model from overfitting to specific camera configurations.
 
-- **Loss Function**:
+- **Loss Function**
   - Combines KL Divergence and Pearson Cross-Correlation to optimize the predicted occupancy maps against the ground truth.
