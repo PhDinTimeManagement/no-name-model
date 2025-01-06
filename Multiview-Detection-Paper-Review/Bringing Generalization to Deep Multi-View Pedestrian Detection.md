@@ -19,9 +19,9 @@ The goal is to develop an MVD model and dataset that can handle these generaliza
 ### 3. Real-World Deployment Challenges
 - Practical scenarios require models to handle
 
-  - Missing or malfunctioning cameras.
-  - Reconfigurable camera setups.
-  - New and unseen environments.
+	  - Missing or malfunctioning cameras.
+	  - Reconfigurable camera setups.
+	  - New and unseen environments.
 
 ---
 ## Methodology
