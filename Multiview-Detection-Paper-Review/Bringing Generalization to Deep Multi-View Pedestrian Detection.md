@@ -20,7 +20,9 @@ The goal is to develop an MVD model and dataset that can handle these generaliza
 - Practical scenarios require models to handle
 
 	  - Missing or malfunctioning cameras.
+	 
 	  - Reconfigurable camera setups.
+	 
 	  - New and unseen environments.
 
 ---
