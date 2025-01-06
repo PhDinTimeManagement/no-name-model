@@ -1,3 +1,5 @@
+![IEEE Big Data](https://img.shields.io/badge/IEEE%20Big%20Data-2023-f1b800) [Paper](https://arxiv.org/abs/2311.13165)
+
 ## Problem Definition
 The paper addresses the problem of multi-camera, multi-target detection in crowded scenes. Traditional single-camera pedestrian detection methods fail in such scenarios due to:
 
