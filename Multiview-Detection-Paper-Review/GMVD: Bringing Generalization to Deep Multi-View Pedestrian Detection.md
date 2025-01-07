@@ -57,3 +57,53 @@ The authors propose a new dataset, **Generalized Multi-View Detection (GMVD)**, 
 
 - **Loss Function**
 	  - Combines KL Divergence and Pearson Cross-Correlation to optimize the predicted occupancy maps against the ground truth.
+
+## Experiments
+
+### 1. Experimental Setup
+
+#### Datasets
+- **WildTrack**  
+- **MultiViewX**  
+- **GMVD (Proposed)**: A diverse, synthetic dataset with 7 scenes, each having unique camera setups and environmental conditions.
+
+#### Metrics
+- **MODA (Multiple Object Detection Accuracy)**: Penalizes both false positives and missed detections.
+- **MODP (Multiple Object Detection Precision)**: Measures the localization precision of detections.
+- **Precision and Recall**: Evaluate the correctness and completeness of detections.
+
+#### Implementation Details
+- **Feature Extraction**: ResNet-18 with dilated convolutions for higher spatial resolution.
+- **Training**:
+  - Optimized using SGD with momentum = 0.9.
+  - Early stopping based on validation performance.
+- **Inference**:
+  - Non-Maximum Suppression (NMS) is applied with a spatial resolution of 0.5m.
+  - The model is evaluated with varying numbers of cameras, configurations, and scenes.
+
+---
+
+### Results
+
+#### 1. Generalization to Varying Number of Cameras
+- **Setup**:
+  - Models trained with 7 cameras on WildTrack were tested with subsets of 4 cameras.
+- **Findings**:
+  - The proposed model outperformed SOTA methods like MVDet, MVDeTr, and SHOT by a significant margin.
+  - DropView regularization further improved performance (MODA = 77.0 vs. 66.6 for SHOT).
+
+#### 2. Generalization to New Camera Configurations
+- **Setup**:
+  - Models trained on one camera configuration were tested on a different configuration within the same scene.
+- **Findings**:
+  - SOTA models showed significant performance drops when tested on unseen configurations.
+  - The proposed model, especially with DropView, maintained high performance (MODA = 84.0 vs. 75.1 for SHOT).
+
+#### 3. Generalization to New Scenes
+- **Setup**:
+  - Models trained on MultiViewX (synthetic) were tested on WildTrack (real-world).
+- **Findings**:
+  - The proposed model achieved a MODA score of 66.1, significantly higher than SHOT (53.6).
+  - DropView improved scene generalization by ensuring robustness to unseen environments.
+- **Benchmarking on GMVD**:
+  - When trained on GMVD and tested on WildTrack, the proposed model achieved a MODA of 80.1, approaching the performance of models trained directly on WildTrack.
