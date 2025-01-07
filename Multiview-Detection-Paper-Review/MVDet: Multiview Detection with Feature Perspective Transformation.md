@@ -1,3 +1,5 @@
+![MVDet ECCV 2020](https://img.shields.io/badge/ECCV-2020-f1b800) [Paper](https://arxiv.org/pdf/2007.07247)
+
 ## Problem Definition
 The paper tackles multi-view pedestrian detection in crowded scenes with overlapping camera fields of view. The primary challenges include:
 
