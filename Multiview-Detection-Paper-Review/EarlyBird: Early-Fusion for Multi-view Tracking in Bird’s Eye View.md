@@ -1,3 +1,5 @@
+![EarlyBird WACV 2024 Workshop](https://img.shields.io/badge/WACV%20Workshop-2024-f1b800) [Paper](https://arxiv.org/abs/2310.13350)
+
 ### Problem Definition
 
 The paper focuses on solving the problem of Multi-Target Multi-Camera (MTMC) tracking using multiple synchronized and calibrated cameras. The main challenges include:
