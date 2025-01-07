@@ -28,7 +28,7 @@ The aim is to develop a robust multi-view detection framework that:
 ---
 
 ## Methodology
-The proposed method, 3D Random Occlusion and Multi-Layer Projection (3DROM), builds upon the MVDet framework and introduces:
+The proposed method, 3D Random Occlusion and Multi-Layer Projection (`3DROM`), builds upon the `MVDet framework` and introduces:
 
 1. **3D Random Occlusion**:
 Simulates pedestrian occlusions by placing 3D cylinders on the ground plane and back-projecting them to all camera views during training.
@@ -46,7 +46,7 @@ Combines top-view occupancy map loss and single-view detection loss for heads an
 
 ## Experiments
 
-The model was evaluated on three public datasets: WILDTRACK, MultiviewX, and EPFL Terrace, with metrics like MODA, MODP, precision, and recall. Key findings include:
+The model was evaluated on three public datasets: `WILDTRACK`, `MultiviewX`, and `EPFL Terrace`, with metrics like `MODA`, `MODP`, `precision`, and `recall`. Key findings include:
 
 - Significant performance improvements over state-of-the-art methods like SHOT and MVDet.
 - Ablation studies showed the effectiveness of 3D Random Occlusion and multi-layer projection.
