@@ -1,4 +1,4 @@
-![EarlyBird WACV 2024 Workshop](https://img.shields.io/badge/WACV%20Workshop-2024-f1b800) [Paper](https://arxiv.org/abs/2310.13350)
+![EarlyBird WACV 2024 Workshop](https://img.shields.io/badge/WACV%20Workshop-2024-f1b800) [Paper](https://arxiv.org/pdf/2310.13350)
 
 ### Problem Definition
 
