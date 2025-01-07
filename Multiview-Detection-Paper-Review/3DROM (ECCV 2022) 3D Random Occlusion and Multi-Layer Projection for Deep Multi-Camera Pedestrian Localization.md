@@ -1,69 +1,52 @@
 ![3DROM ECCV 2022](https://img.shields.io/badge/ECCV-2022-f1b800) [Paper](https://arxiv.org/abs/2207.10895)
 
-## Problem Definition
-The paper addresses the problem of multi-camera, multi-target detection in crowded scenes. Traditional single-camera pedestrian detection methods fail in such scenarios due to:
+Problem Definition
+The paper addresses the challenge of multi-view pedestrian detection under heavy occlusions. Single-view deep-learning methods often fail in such scenarios due to:
 
-- **Occlusions**: People occlude each other in crowded environments, leading to missed or inaccurate detections.
-- **Crowded Environments**: Single-camera models struggle to handle dense scenes effectively.
+Occlusions: Severe occlusion among pedestrians in crowded scenes leads to missed detections.
+Data Limitations: A scarcity of annotated multi-view datasets increases overfitting risks in deep-learning models.
+The aim is to develop a robust multi-view detection framework that:
 
-The challenge is to design a robust system that:
-- Detects multiple people in multi-camera setups.
-- Models and reasons about occlusions explicitly.
-- Combines deep learning with traditional probabilistic frameworks (e.g., Conditional Random Fields, CRFs).
+Detects pedestrians accurately even in heavily occluded settings.
+Reduces overfitting despite limited annotated multi-view training samples.
+Effectively fuses features across multiple views and pedestrian heights.
+Motivation
 
-## Motivation
-### Limitations of Single-Image Detectors
-- Single-image detectors like Faster R-CNN perform well in simple scenes but degrade significantly in crowded scenes with occlusions.
-- Non-Maximum Suppression (NMS) fails to resolve ambiguities caused by overlapping detections.
+Limitations of Existing Methods:
 
-### Multi-Camera Systems
-- Cameras with overlapping fields of view provide an opportunity to overcome occlusions by aggregating information across views.
-- Existing multi-camera methods like POM (Probabilistic Occupancy Map) handle occlusions but rely on outdated techniques like background subtraction, which lack discriminative power in dense scenes.
-  
-### Combining Deep Learning with Probabilistic Models
-- Deep learning models can extract powerful features for detection.
-- Probabilistic models like CRFs can model interactions (e.g., occlusions) between people and enforce global constraints.
+Single-view models struggle with occlusions, resulting in degraded performance.
+Current multi-view approaches, though effective, lack sufficient training data for robust performance.
+Importance of Geometric Constraints:
 
-## Methodology
-The paper introduces a joint CNN-CRF model to combine the strengths of convolutional neural networks (CNNs) and conditional random fields (CRFs) for multi-camera multi-target detection.
-  
-### Discretized Ground Plane Representation
-- The ground plane is divided into a grid of discrete cells, each representing a potential location for a pedestrian.
-- A Boolean variable `Z` is associated with each cell, indicating whether it is occupied.
-  
-### High-Order CRF
-- The CRF models interactions between detections to account for occlusions.
+Incorporating 3D geometric constraints helps align features across camera views for accurate detection.
+Need for Advanced Augmentation:
 
-#### Generative Model
-- Simulates the expected appearance of the scene (e.g., projections of people onto the ground plane) given their locations.
+Existing monocular augmentations like random erasing violate multi-view geometric consistency, making them unsuitable for this task.
+Methodology
+The proposed method, 3D Random Occlusion and Multi-Layer Projection (3DROM), builds upon the MVDet framework and introduces:
 
-#### Discriminative Model
-- A CNN predicts probabilities of occupancy for each grid cell based on image features.
+3D Random Occlusion:
 
-#### High-Order Potentials
-- Measure the agreement between the generative model and the discriminative model using Probability Product Kernels.
-- Encode non-local interactions, enabling the system to handle occlusions even when people are far apart.
+Simulates pedestrian occlusions by placing 3D cylinders on the ground plane and back-projecting them to all camera views during training.
+Multi-Layer Projection:
 
-### Additional CRF Terms
-- **Unary Potentials**: Use CNN features to estimate the probability of a pedestrian being present in each grid cell.
-- **Pairwise Potentials**: Enforce spatial constraints, ensuring pedestrians are not detected too close to each other.
-  
-### Inference
-- The CRF’s energy function is minimized using Mean-Field Inference, which approximates the posterior distribution over pedestrian locations.
+Projects view-specific feature maps onto multiple parallel planes at different heights (e.g., ground level, torso, head) to capture full pedestrian silhouettes across views.
+Feature Alignment:
 
-### Training
-- **Supervised Training**:
-  - The model is trained end-to-end using annotated datasets.
-  - Pre-training is used to initialize individual components (e.g., the CNN and generative model) before fine-tuning the entire pipeline.
+Uses deformable convolution (DCNv2) to correct geometric distortions in multi-layer projections.
+Loss Function:
 
-- **Unsupervised Training**:
-  - In scenarios without labeled data, the system uses inter-camera consistency and translation invariance as priors for unsupervised training.
+Combines top-view occupancy map loss and single-view detection loss for heads and feet.
+Experiments
+The model was evaluated on three public datasets: WILDTRACK, MultiviewX, and EPFL Terrace, with metrics like MODA, MODP, precision, and recall. Key findings include:
 
-## Experiments
-*TODO*
+Significant performance improvements over state-of-the-art methods like SHOT and MVDet.
+Ablation studies showed the effectiveness of 3D Random Occlusion and multi-layer projection.
+Five-layer projections below waist height yielded the best results.
+Results
 
-## Results
-*TODO*
-
-## Conclusion
-*TODO*
+Performance: The 3DROM model achieved top MODA scores (e.g., 95.0% on MultiviewX).
+Ablation Studies: Both components (3D occlusion and multi-layer projection) improved detection, particularly in dense and occluded settings.
+Robustness: Increased detection precision and recall across datasets compared to existing methods.
+Conclusion
+The 3DROM framework enhances multi-view pedestrian detection by addressing overfitting and occlusion challenges. Future work aims to improve generalizability across datasets and develop more efficient feature fusion strategies.
