@@ -1,3 +1,5 @@
+![GMVD WACV 2023](https://img.shields.io/badge/WACV-2023-f1b800) [Paper](https://arxiv.org/abs/2109.12227)
+
 ## Problem Definition
 This paper addresses the problem of Multi-View Detection (MVD) for pedestrian detection, focusing on generalization capabilities. While current MVD methods have shown success in occlusion reasoning for crowded environments, they often fail to generalize to:
 
