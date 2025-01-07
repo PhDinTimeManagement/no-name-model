@@ -1,4 +1,4 @@
-![Deep-Occlusion ICCV 2017](https://img.shields.io/badge/ICCV-2017-f1b800) [Paper](https:https://openaccess.thecvf.com/content_ICCV_2017/papers/Baque_Deep_Occlusion_Reasoning_ICCV_2017_paper.pdf)
+![Deep-Occlusion ICCV 2017](https://img.shields.io/badge/ICCV-2017-f1b800) [Paper](https://openaccess.thecvf.com/content_ICCV_2017/papers/Baque_Deep_Occlusion_Reasoning_ICCV_2017_paper.pdf)
 
 ## Problem Definition
 The paper addresses the problem of multi-camera, multi-target detection in crowded scenes. Traditional single-camera pedestrian detection methods fail in such scenarios due to:
