@@ -60,10 +60,59 @@ The paper introduces a joint CNN-CRF model to combine the strengths of convoluti
   - In scenarios without labeled data, the system uses inter-camera consistency and translation invariance as priors for unsupervised training.
 
 ## Experiments
-*TODO*
+### Datasets
+1. **ETHZ**
+2. **EPFL Terrace**
+3. **PETS 2009**
 
+### Metrics
+- **MODA (Multiple Object Detection Accuracy)**: Evaluates overall detection accuracy.
+- **MODP (Multiple Object Detection Precision)**: Measures localization precision.
+- **Precision and Recall**: Evaluate detection correctness and completeness.
+
+### Baselines
+1. **POM-CNN**
+   - Combines the traditional POM method with CNN-based segmentation.
+2. **RCNN-2D/3D**
+   - Projects detections from Faster R-CNN to the ground plane and clusters them across views.
+---
 ## Results
-*TODO*
+### Quantitative Results
+- **On all datasets**, the proposed method outperformed the baselines in terms of MODA, MODP, precision, and recall.
+- **ETHZ Dataset**:
+  - **Ours**: MODA = 74.1%, MODP = 53.8%, Precision = 95%, Recall = 80%.
+  - **RCNN-2D/3D**: MODA = 43%, MODP = 18.4%, Precision = 68%, Recall = 43%.
+
+- **EPFL Dataset**:
+  - **Ours**: MODA = 68.2%, Precision = 88%, Recall = 82%.
+  - **RCNN-2D/3D**: MODA = 50%, Precision = 39%, Recall = 50%.
+
+### Qualitative Results
+- Visualizations show accurate detections in crowded scenes.
+- Probabilistic Occupancy Maps provide smooth, interpretable outputs.
+  
+
+### Ablation Study
+- Removing high-order terms significantly degraded performance, demonstrating their importance for handling occlusions.
+- The unsupervised version performed better than baselines but slightly worse than the fully supervised version.
+
+### Comparison with Baselines
+- The proposed method consistently outperformed POM-CNN and RCNN-2D/3D baselines across all datasets and metrics.
 
 ## Conclusion
-*TODO*
+### Contributions
+- Introduced a novel CNN-CRF pipeline for multi-camera detection with explicit occlusion reasoning.
+- Demonstrated the effectiveness of high-order CRF terms for handling crowded scenes.
+- Showed the feasibility of unsupervised training for multi-camera systems.
+
+### Advantages
+- Does not require Non-Maximum Suppression, avoiding issues with overlapping detections.
+- Outputs smooth probability maps for detections, which can be used for further processing (e.g., trajectory tracking).
+
+### Limitations
+- The CNN operates independently for each image, rather than pooling multi-camera information early.
+- Performance depends on accurate camera calibration and ground plane discretization.
+
+### Future Work
+- Investigate multi-camera CNN architectures that pool information early.
+- Extend the approach to dynamic scenes and moving cameras.
