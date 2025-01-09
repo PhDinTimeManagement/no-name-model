@@ -28,13 +28,13 @@ The proposed **MVFlow** framework introduces a **flow-based weakly supervised ap
 
 ### People Flow Modeling
 
-#### Flow Definition:
+#### 1. Flow Definition:
 - At any time step `t`, for a grid location `i`, the flow `f_{i,j}^{t,t+1}` represents the probability of a person moving from location `i` at time `t` to location `j` at time `t + 1`.
 - Each grid cell outputs a 9-dimensional flow vector:
   - One dimension for staying in the same location.
   - Eight for moving to neighboring locations.
 
-#### Flow Constraints:
+#### 2. Flow Constraints:
 1. **Conservation Constraint**:
    - The sum of incoming flows to a location equals the sum of outgoing flows.
 
